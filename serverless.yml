@@ -1,0 +1,37 @@
+frameworkVersion: ">=1.2.1"
+
+service: jannebot
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: eu-west-1
+  iamRoleStatements:
+  - Effect: Allow
+    Action:
+      - lambda:InvokeFunction
+    Resource: "*"
+
+functions:
+  respond:
+    handler: handler.respond
+    events:
+      - http:
+          path: respond
+          method: post
+          cors: true
+  gentext:
+    handler: handler.genText
+    package:
+      indicidually: true
+      include: 
+        - vendored
+        - model
+
+package:
+  exclude:
+    - Dockerfile
+    - .git/**
+    - vendored
+    - model/**
