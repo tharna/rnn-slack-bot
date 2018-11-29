@@ -15,23 +15,22 @@ provider:
 
 functions:
   respond:
-    handler: handler.respond
+    handler: index.respond
+    memorySize: 128
     events:
       - http:
           path: respond
           method: post
           cors: true
+    package:
+      exclude:
+        - vendored/**
+        - model/**
   gentext:
     handler: handler.genText
-    package:
-      indicidually: true
-      include: 
-        - vendored
-        - model
 
 package:
+  individually: true
   exclude:
     - Dockerfile
     - .git/**
-    - vendored
-    - model/**
