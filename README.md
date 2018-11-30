@@ -16,7 +16,7 @@ docker cp lambda:/tmp/vendored/ vendored
 docker stop lambda
 ```
 
-Copy config.yml.exaple to config.yml and add your Slack token
+Copy config.yml.example to config.yml and add your Slack token
 
 Make sure you have AWS cli installed and credentials set
 
