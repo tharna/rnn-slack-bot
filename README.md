@@ -5,6 +5,7 @@ Install Serverless framework:
 
 Generate your trained model. You can run textgenrnn on your local computer: https://github.com/minimaxir/textgenrnn
 But that will be slow unless you have a powerful Nvidia GPU on your machine. A better option is to use colab which provides free access to Google NPU's for limited time (around 4 hours, which is plenty to train a simple model). You can find example colab notebook from: https://github.com/minimaxir/textgenrnn/blob/cfba96c9f6baa347d1493df4be72f92b2fb3815b/docs/textgenrnn-demo.ipynb
+
 Once you have the model place it under `model/` folder.
 
 Build vendored libraries:
