@@ -1,3 +1,4 @@
 vendored
 .serverless
 model/slack_*
+config.yml

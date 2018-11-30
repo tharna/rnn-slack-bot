@@ -12,6 +12,9 @@ provider:
     Action:
       - lambda:InvokeFunction
     Resource: "*"
+  environment:
+    SLACK_TOKEN: ${file(./config.yml):slack_token}
+    SERVERLESS_STAGE: ${opt:stage, self:provider.stage}
 
 functions:
   respond:
