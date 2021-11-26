@@ -25,6 +25,7 @@ RUN pip3 install -t /tmp/vendored numpy==1.10.4 --no-binary -U
 RUN pip3 install -t /tmp/vendored scipy --no-binary -U
 RUN pip3 install -t /tmp/vendored tensorflow==1.6 --no-binary -U
 RUN pip3 install -t /tmp/vendored textgenrnn --no-binary -U
+RUN pip3 install -t /tmp/vendored python-rake --no-binary -U
 
 RUN find /tmp/vendored -name "*-info" -type d -exec rm -rdf {} +
 

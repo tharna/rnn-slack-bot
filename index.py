@@ -1,34 +1,23 @@
 #!/usr/bin/python3
+from slack_sdk import WebClient
 import json
 import os
-import urllib.parse as urlparse
-from boto3 import client as boto3_client
-
-lambda_client = boto3_client('lambda', region_name="eu-west-1",)
-
+from urllib.parse import parse_qs
+client = WebClient(token=os.environ.get("SLACK_BOT_TOKEN"))
 def respond(event, context):
-    query = urlparse.parse_qs(event['body'])
-    token = os.environ['SLACK_TOKEN']
-    if (query['token'][0] != token):
-        data = {
-                "response_type": "ephemeral",
-                "text": "Oops, seems like you are not allowed here."
-                }
+    params = parse_qs(event['body'])
+    
+    print(params)
 
-        objRet =  {
-                'statusCode': 200,
-                'body': json.dumps(data),
-                }
-    else:
-        stage = os.environ['SERVERLESS_STAGE']
-        lambda_client.invoke(
-                FunctionName="jannebot-" + stage + "-gentext",
-                InvocationType='Event',
-                Payload=json.dumps(query)
-            )
-        objRet =  {
-            'statusCode': 200,
-        }
+    objRet =  {
+        'statusCode': 200
+    }
+
+    #APP token (Bot User OAuth Access Token) Can be found in Created APP > OAuth & Permissions
+    result = client.chat_postMessage(
+        channel=params['channel_id'][0],
+        text=params['text'][0]
+    )
 
     return objRet
 
